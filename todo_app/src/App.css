@@ -12,8 +12,13 @@
   width: 100%;
 }
 
-.header.night {
+.header.light {
   background: url("./assets/header/bg-desktop-light.jpg");
+  background-repeat: no-repeat;
+}
+
+.header.dark {
+  background: url("./assets/header/bg-desktop-dark.jpg");
   background-repeat: no-repeat;
 }
 
