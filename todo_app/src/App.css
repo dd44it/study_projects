@@ -26,13 +26,13 @@
 }
 
 .main {
-  background-color: hsl(0, 0%, 98%);
+  background-color: hsl(var(--clr-light-very-gray)); 
   flex: 1;
 }
 
 .todo {
   position: absolute;
-  top: 15%;
+  top: 40px;
   bottom: 0;
   margin: auto 0;
   width: 100%;
@@ -44,7 +44,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: white;
+  color: hsl(var(--clr-light-very-gray));
 }
 
 .switch-theme {

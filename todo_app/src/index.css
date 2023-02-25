@@ -1,7 +1,24 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Josefin Sans', sans-serif;
   font-weight: 400;
+
+  --clr-primary: 220, 98%, 61%;
+
+  /* Light Theme */
+  --clr-light-very-gray: 0, 0%, 98%;
+  --clr-light-very-grayish-blue: 236, 33%, 92%;
+  --clr-light-grayish-blue: 233, 11%, 84%;
+  --clr-dark-grayish-blue: 236, 9%, 61%;
+  --clr-dark-very-grayish-blue: 235, 19%, 35%;
+
+  /* Dark Theme */
+  --clr-dark-very-blue: 235, 21%, 11%;
+  --clr-dark-very-desaturated-blue: 235, 24%, 19%;
+  --clr-light-grayish-blue: 234, 39%, 85%;
+  --clr-light-grayish-blue-hover: 236, 33%, 92%;
+  --clr-dark-grayish-blue: 234, 11%, 52%;
+  --clr-dark-very-grayish-blue: 233, 14%, 35%;
+
 }
 
 html,
@@ -11,16 +28,6 @@ body {
   height: 100%;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -28,15 +35,14 @@ h1 {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: hsl(var(--clr-dark-very-grayish-blue));
+    background-color: hsl(var(--clr-light-very-gray));
   }
+}
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: hsl(var(--clr-light-very-gray));
+    background-color: hsl(var(--clr-dark-very-desaturated-blue));
   }
 }
