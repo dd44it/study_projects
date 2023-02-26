@@ -1,19 +1,12 @@
 import React from "react";
 
-export default function SwitchTheme(){
-  function switchTheme(e){
-    console.log("switch theme to ...")
-    const theme = e.target
-    console.log(theme)
-    theme.classList.toggle('night')
-    
-    // if(!theme.className.contains('night')){
-    // }
-
-  }
+export default function SwitchTheme(props) {
   return (
-    <div> 
-      <div className="switch-theme" onClick={ e => {switchTheme(e)}}></div> 
+    <div>
+      <div
+        className={`switch-theme switch-theme-${props.theme}`}
+        onClick={props.toggleTheme}
+      ></div>
     </div>
-  )
+  );
 }
