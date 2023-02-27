@@ -6,6 +6,23 @@ import { ThemeContextConsumer } from "./ThemeContext";
 import ListTodo from './components/ListTodo'
 
 function App() {
+  const [todo, setTodo] = useState({ todo: '' })
+
+  function handleChange(e){
+    const {name, value} = e.target
+    setTodo({[name]: value})
+  }
+
+  const [listTodo, setListTodo] = useState([])
+
+  function addTodo(e){
+    if(!todo.todo) return
+    if (e.charCode === 13) {
+      setListTodo(prevData => [...prevData, todo.todo] )
+      setTodo({todo: ''})
+    }
+  }
+
   return (
     <div className="App">
       <ThemeContextConsumer>
@@ -17,8 +34,8 @@ function App() {
                   theme={context.theme}
                   toggleTheme={context.toggleTheme}
                 />
-                <InputTodo />
-                <ListTodo />
+                <InputTodo todo={todo.todo} handleChange={handleChange} keyPress={addTodo} />
+                <ListTodo  />
 
               </div>
             </header>
