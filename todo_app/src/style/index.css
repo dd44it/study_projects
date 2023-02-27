@@ -7,7 +7,9 @@
   /* Light Theme */
   --clr-light-very-gray: 0, 0%, 98%;
   --clr-light-very-grayish-blue: 236, 33%, 92%;
-  --clr-light-grayish-blue: 233, 11%, 84%;
+  border-radius: 6px 6px 0 0;
+  : 233, 11%, 84%;
+  --clr-light-dark-grayish-blue: 235, 19%, 35%;
 
   /* Dark Theme */
   --clr-dark-very-blue: 235, 21%, 11%;
@@ -42,7 +44,7 @@ h1 {
 @media (prefers-color-scheme: light) {
   :root {
     color: hsl(var(--clr-dark-very-grayish-blue));
-    background-color: hsl(var(--clr-light-very-gray));
+    background-color: hsl(var(--clr-light-very-grayish-blue));
   }
 }
 
