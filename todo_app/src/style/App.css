@@ -5,7 +5,6 @@
 }
 
 .header {
-  background-size: cover;
   background-repeat: no-repeat;
   height: 300px;
   width: 100%;
@@ -13,10 +12,12 @@
 
 .header-light {
   background: url("../assets/header/bg-desktop-light.jpg");
+  background-size: cover;
 }
 
 .header-night {
   background: url("../assets/header/bg-desktop-dark.jpg");
+  background-size: cover;
 }
 
 .main {
