@@ -3,6 +3,7 @@ import "./style/App.css";
 import Header from "./components/Header";
 import InputTodo from "./components/InputTodo";
 import { ThemeContextConsumer } from "./ThemeContext";
+import ListTodo from './components/ListTodo'
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
                   toggleTheme={context.toggleTheme}
                 />
                 <InputTodo />
+                <ListTodo />
+
               </div>
             </header>
             <main className={`main main-${context.theme}`}></main>
