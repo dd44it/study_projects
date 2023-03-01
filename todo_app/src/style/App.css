@@ -31,7 +31,7 @@
 
 .main-night {
   color: hsl(var(--clr-light-very-gray));
-  background-color: hsl(var(--clr-dark-very-desaturated-blue));
+  background-color: hsl(var(--clr-dark-blue));
 }
 
 .todo {
@@ -83,26 +83,45 @@
   border: none;
 }
 
+.input-todo-light {
+  color: hsl(var(--clr-light-dark-grayish-blue));
+  background-color: hsl(var(--clr-light-very-gray));
+}
+
+.input-todo-night {
+  color: hsl(var(--clr-light-very-grayish-blue));
+  background-color: hsl(var(--clr-dark-very-desaturated-blue));
+}
+
 .list-todo{
   width: 600px;
   margin: 0 auto;
   text-align: left;
   border-radius: 6px 6px 0 0;
-  box-shadow: 0px 19px 53px -17px hsl(var(--clr-light-grayish-blue));
+  /* box-shadow: 0px 19px 53px -17px hsl(var(--clr-light-grayish-blue));
   -webkit-box-shadow: 0px 19px 53px -17px hsl(var(--clr-light-very-grayish-blue));
-  -moz-box-shadow: 0px 19px 53px -17px hsl(var(--clr-light-very-grayish-blue));
+  -moz-box-shadow: 0px 19px 53px -17px hsl(var(--clr-light-very-grayish-blue)); */
 }
 
 .list-todo__item{
   height: 65px;
   padding: 3px 15px;
   font-size: 20px;
-  background-color: hsl(var(--clr-light-very-gray));
-  color: hsl(var(--clr-light-dark-grayish-blue));
   border-bottom: 1px solid hsl(var(--clr-light-dark-grayish-blue));
   display: flex;
   align-items: center; 
 }
+
+.list-todo__item-light {
+  color: hsl(var(--clr-light-dark-grayish-blue));
+  background-color: hsl(var(--clr-light-very-gray));
+}
+
+.list-todo__item-night {
+  color: hsl(var(--clr-light-very-grayish-blue));
+  background-color: hsl(var(--clr-dark-very-desaturated-blue));
+}
+
 
 .list-todo__item:first-child{
   border-radius: 6px 6px 0 0;
