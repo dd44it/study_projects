@@ -105,11 +105,12 @@
 
 .list-todo__item{
   height: 65px;
-  padding: 3px 15px;
+  padding: 3px 25px 3px 15px;
   font-size: 20px;
   border-bottom: 1px solid hsl(var(--clr-light-dark-grayish-blue));
   display: flex;
-  align-items: center; 
+  align-items: center;
+  justify-content: space-between;
 }
 
 .list-todo__item-light {
@@ -122,6 +123,15 @@
   background-color: hsl(var(--clr-dark-very-desaturated-blue));
 }
 
+.list-todo__item:hover .delete{
+  display: block;
+}
+
+.delete{
+  cursor: pointer;
+  display: none;
+  font-size: 25px;
+}
 
 .list-todo__item:first-child{
   border-radius: 6px 6px 0 0;

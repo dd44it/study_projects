@@ -23,6 +23,12 @@ function App() {
     }
   }
 
+  function removeTodo(e){
+    const removeElem = e.target
+    // setListTodo(prevData => prevData.filter(btn => btn.id))
+
+  }
+
   return (
     <div className="App">
       <ThemeContextConsumer>
