@@ -35,7 +35,7 @@ function App() {
                   toggleTheme={context.toggleTheme}
                 />
                 <InputTodo todo={todo.todo} handleChange={handleChange} keyPress={addTodo} />
-                <ListTodo  />
+                <ListTodo listTodo={listTodo} />
 
               </div>
             </header>
