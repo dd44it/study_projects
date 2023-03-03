@@ -3,7 +3,9 @@ import "./style/App.css";
 import Header from "./components/Header";
 import InputTodo from "./components/InputTodo";
 import { ThemeContextConsumer } from "./ThemeContext";
-import ListTodo from './components/ListTodo'
+import ListTodo from './components/ListTodo';
+import { nanoid } from "nanoid";
+
 
 function App() {
   const [todo, setTodo] = useState({ todo: '' })
@@ -13,20 +15,46 @@ function App() {
     setTodo({[name]: value})
   }
 
-  const [listTodo, setListTodo] = useState([])
+  const [listTodo, setListTodo] = useState([
+    {
+      id: nanoid(),
+      todo: 'Jog around the park 3x'
+    },
+    {
+      id: nanoid(),
+      todo: '10 minutes meditation'
+    },
+    {
+      id: nanoid(),
+      todo: 'Read for 1 hour'
+    },
+    {
+      id: nanoid(),
+      todo: 'Pick up groceries'
+    },
+    {
+      id: nanoid(),
+      todo: 'Complete Todo App on Frontend Mentor'
+    },
+  ])
 
   function addTodo(e){
     if(!todo.todo) return
     if (e.charCode === 13) {
-      setListTodo(prevData => [...prevData, todo.todo] )
+      const updateTodoList = [
+        ...listTodo,
+        {
+          id: nanoid(),
+          todo: todo.todo
+        }
+      ]
+      setListTodo(updateTodoList)
       setTodo({todo: ''})
     }
   }
 
-  function removeTodo(e){
-    const removeElem = e.target
-    // setListTodo(prevData => prevData.filter(btn => btn.id))
-
+  function removeTodo(id){
+    setListTodo(prevData => prevData.filter(btn => btn.id !== id ))
   }
 
   return (
@@ -41,7 +69,7 @@ function App() {
                   toggleTheme={context.toggleTheme}
                 />
                 <InputTodo todo={todo.todo} handleChange={handleChange} keyPress={addTodo} theme={context.theme} />
-                <ListTodo listTodo={listTodo} theme={context.theme} />
+                <ListTodo listTodo={listTodo} theme={context.theme} removeTodo={removeTodo} />
 
               </div>
             </header>
