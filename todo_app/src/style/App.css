@@ -110,7 +110,6 @@
   border-bottom: 1px solid hsl(var(--clr-light-dark-grayish-blue));
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .list-todo__item-light {
@@ -123,9 +122,47 @@
   background-color: hsl(var(--clr-dark-very-desaturated-blue));
 }
 
+.todo__item{
+  margin-right: auto;
+}
+
 .list-todo__item:hover .delete{
   display: block;
 }
+
+.todo-checkbox{
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+}
+
+.todo-undone-light,
+.todo-undone-night {
+  text-decoration: none;
+}
+
+.todo-done-light,
+.todo-done-night {
+  text-decoration: line-through;
+}
+
+.todo-done-light{
+  color: hsl(var(--clr-light-grayish-blue));  
+}
+
+.todo-undone-light{
+  color: hsl(var(--clr-light-dark-grayish-blue));
+}
+
+.todo-done-night{
+  color: hsl(var(--clr-dark-grayish-blue));
+}
+
+.todo-undone-night{
+  color: hsl(var(--clr-light-very-grayish-blue));
+}
+
 
 .delete{
   cursor: pointer;

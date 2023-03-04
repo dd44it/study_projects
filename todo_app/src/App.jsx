@@ -18,22 +18,32 @@ function App() {
   const [listTodo, setListTodo] = useState([
     {
       id: nanoid(),
+      done: true,
+      todo: 'Complete online JavaScript course'
+    },
+    {
+      id: nanoid(),
+      done: false,
       todo: 'Jog around the park 3x'
     },
     {
       id: nanoid(),
+      done: false,
       todo: '10 minutes meditation'
     },
     {
       id: nanoid(),
+      done: false,
       todo: 'Read for 1 hour'
     },
     {
       id: nanoid(),
+      done: false,
       todo: 'Pick up groceries'
     },
     {
       id: nanoid(),
+      done: false,
       todo: 'Complete Todo App on Frontend Mentor'
     },
   ])
@@ -45,7 +55,8 @@ function App() {
         ...listTodo,
         {
           id: nanoid(),
-          todo: todo.todo
+          done: false,
+          todo: todo.todo,
         }
       ]
       setListTodo(updateTodoList)
@@ -55,6 +66,10 @@ function App() {
 
   function removeTodo(id){
     setListTodo(prevData => prevData.filter(btn => btn.id !== id ))
+  }
+
+  function doneTodo(id){
+    setListTodo(prevData => prevData.map(todo => todo.id === id ? {...todo, done: !todo.done} : todo ))
   }
 
   return (
@@ -69,7 +84,7 @@ function App() {
                   toggleTheme={context.toggleTheme}
                 />
                 <InputTodo todo={todo.todo} handleChange={handleChange} keyPress={addTodo} theme={context.theme} />
-                <ListTodo listTodo={listTodo} theme={context.theme} removeTodo={removeTodo} />
+                <ListTodo listTodo={listTodo} theme={context.theme} removeTodo={removeTodo} done={doneTodo} />
 
               </div>
             </header>

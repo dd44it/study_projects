@@ -2,12 +2,14 @@ import React from "react";
 
 export default function ListTodo(props) {
   const listTodo = props.listTodo.map((item) => {
+    const todoDone = item.done ? 'done' : 'undone'
     return (
       <div
         key={item.id}
         className={`list-todo__item list-todo__item-${props.theme}`}
       >
-        {item.todo}
+        <input type="checkbox" className="todo-checkbox" onChange={e => {props.done(item.id)} } checked={item.done && true} />
+        <span className={`todo__item todo-${todoDone}-${props.theme}`}> {item.todo} </span>
         <span
           className="delete"
           onClick={(e) => {
