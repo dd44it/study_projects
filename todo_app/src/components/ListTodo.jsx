@@ -1,4 +1,5 @@
 import React from "react";
+import FilterTodo from "./FIlterTodo";
 
 export default function ListTodo(props) {
   const listTodo = props.listTodo.map((item) => {
@@ -24,6 +25,11 @@ export default function ListTodo(props) {
   return (
     <div className="list-todo">
       {listTodo}
+      <FilterTodo
+        theme={props.theme}
+        listTodo={props.listTodo}
+        removeCompletedTask={props.removeCompletedTask}
+      />
     </div>
   );
 }

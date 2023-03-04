@@ -72,6 +72,10 @@ function App() {
     setListTodo(prevData => prevData.map(todo => todo.id === id ? {...todo, done: !todo.done} : todo ))
   }
 
+  function removeCompletedTask(){
+    setListTodo(prevData => prevData.filter(todo => todo.done === false ))
+  }
+
   return (
     <div className="App">
       <ThemeContextConsumer>
@@ -84,7 +88,7 @@ function App() {
                   toggleTheme={context.toggleTheme}
                 />
                 <InputTodo todo={todo.todo} handleChange={handleChange} keyPress={addTodo} theme={context.theme} />
-                <ListTodo listTodo={listTodo} theme={context.theme} removeTodo={removeTodo} done={doneTodo} />
+                <ListTodo listTodo={listTodo} theme={context.theme} removeTodo={removeTodo} done={doneTodo} removeCompletedTask={removeCompletedTask} />
 
               </div>
             </header>

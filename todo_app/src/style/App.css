@@ -148,7 +148,7 @@
 }
 
 .todo-done-light{
-  color: hsl(var(--clr-light-grayish-blue));  
+  color: hsl(var(--clr-light-grayish-blue));
 }
 
 .todo-undone-light{
@@ -163,7 +163,6 @@
   color: hsl(var(--clr-light-very-grayish-blue));
 }
 
-
 .delete{
   cursor: pointer;
   display: none;
@@ -173,3 +172,33 @@
 .list-todo__item:first-child{
   border-radius: 6px 6px 0 0;
 }
+
+.filter {
+  justify-content: space-between;
+  font-size: 16px;
+  color: hsl(var(--clr-light-black-gray));
+}
+
+.filter-button_wrapper {
+  display: flex;
+  width: 70%;
+}
+
+.filter-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+.active{
+  color: hsl(var(--clr-light-blue));
+
+}
+
+.clear-btn {
+  margin-left: auto;
+  margin-right: 0;
+}
+
