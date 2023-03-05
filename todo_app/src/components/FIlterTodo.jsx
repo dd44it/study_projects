@@ -6,9 +6,9 @@ export default function FilterTodo(props){
     <div className={`filter list-todo__item list-todo__item-${props.theme}`}>
       <span className="count-active-todo">items left {countActiveTask} </span>
       <div className="filter-button_wrapper">
-        <button className="filter-button active">All</button>
-        <button className="filter-button">Acitve</button>
-        <button className="filter-button">Completed</button>
+        <button className="filter-button active" onClick={props.showAll}>All</button>
+        <button className="filter-button" onClick={props.showActiveTask} >Acitve</button>
+        <button className="filter-button" onClick={props.showCompleted} >Completed</button>
         <button
           className="filter-button clear-btn"
           onClick={props.removeCompletedTask}

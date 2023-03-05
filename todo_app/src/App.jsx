@@ -10,6 +10,12 @@ import { nanoid } from "nanoid";
 function App() {
   const [todo, setTodo] = useState({ todo: '' })
 
+  const [sortTodo, setSortTodo] = useState({
+    all: true,
+    active: false,
+    completed: false
+  })
+
   function handleChange(e){
     const {name, value} = e.target
     setTodo({[name]: value})
@@ -76,6 +82,36 @@ function App() {
     setListTodo(prevData => prevData.filter(todo => todo.done === false ))
   }
 
+  function showActiveTask(){
+    // setListTodo(prevData => prevData)
+    // prev elems who contains active should remove at all
+    // here should be method to turn on className to "active"
+
+    const updateTodoList = [
+      ...listTodo,
+      {
+        active: listTodo.filter(todo => todo.done === false && {...todo})
+      }
+    ]
+    setListTodo(updateTodoList)
+    setSortTodo({all: false, active: true, completed: false})
+  }
+
+  function showCompleted(){
+    const updateTodoList = [
+      ...listTodo,
+      {
+        completed: listTodo.filter(todo => todo.done === true && {...todo})
+      }
+    ]
+    setListTodo(updateTodoList)
+    setSortTodo({all: false, active: false, completed: true})
+  }
+
+  function showAll(){
+    setSortTodo({all: true, active: false, completed: false})
+  }
+
   return (
     <div className="App">
       <ThemeContextConsumer>
@@ -88,7 +124,17 @@ function App() {
                   toggleTheme={context.toggleTheme}
                 />
                 <InputTodo todo={todo.todo} handleChange={handleChange} keyPress={addTodo} theme={context.theme} />
-                <ListTodo listTodo={listTodo} theme={context.theme} removeTodo={removeTodo} done={doneTodo} removeCompletedTask={removeCompletedTask} />
+                <ListTodo 
+                  listTodo={listTodo}
+                  theme={context.theme}
+                  removeTodo={removeTodo}
+                  done={doneTodo}
+                  removeCompletedTask={removeCompletedTask}
+                  showActiveTask={showActiveTask}
+                  sortTodo={sortTodo}
+                  showCompleted={showCompleted}
+                  showAll={showAll}
+                  />
 
               </div>
             </header>
