@@ -125,6 +125,7 @@
 
 .todo__item{
   margin-right: auto;
+  cursor: pointer;
 }
 
 .list-todo__item:hover .delete{

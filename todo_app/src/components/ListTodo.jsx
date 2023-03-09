@@ -20,7 +20,9 @@ export default function ListTodo(props) {
             onChange={e => {props.done(item.id)} } 
             checked={item.done && true} 
           />
-          <span className={`todo__item todo-${todoDone}-${props.theme}`}> {item.todo} </span>
+          <span 
+            onClick={e => {props.done(item.id)} }
+            className={`todo__item todo-${todoDone}-${props.theme}`}> {item.todo} </span>
           <span
             className="delete"
             onClick={(e) => {
