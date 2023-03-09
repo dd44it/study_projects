@@ -12,9 +12,9 @@ export default function FilterTodo(props){
     <div className={`filter list-todo__item list-todo__item-${props.theme}`}>
       <span className="count-active-todo">items left {countActiveTask} </span>
       <div className="filter-button_wrapper">
-        <button className="filter-button active" onClick={e => {props.filteredTask('all')}}>All</button>
-        <button className="filter-button" onClick={e => {props.filteredTask('active')}} >Acitve</button>
-        <button className="filter-button"  onClick={e => {props.filteredTask('completed')}} >Completed</button>
+        <button className={`filter-button ${props.filter === 'all' &&  'active'}`} onClick={e => {props.filteredTask('all')}}>All</button>
+        <button className={`filter-button ${props.filter === 'active' &&  'active'}`} onClick={e => {props.filteredTask('active')}} >Acitve</button>
+        <button className={`filter-button ${props.filter === 'completed' &&  'active'}`}  onClick={e => {props.filteredTask('completed')}} >Completed</button>
         <button
           className="filter-button clear-btn"
           onClick={props.removeCompletedTask}
