@@ -10,13 +10,18 @@ import FilterTodo from "./components/FIlterTodo";
 
 
 function App() {
-  const [todo, setTodo] = useState({ todo: '' });
+  const [todo, setTodo] = useState({ todo: '', done: false });
 
   const [filterTodo, setfilterTodo] = useState('all');
 
   function handleChange(e){
-    const {name, value} = e.target
-    setTodo({[name]: value})
+    const {name, value, type, checked} = e.target
+    setTodo(prevData => (
+      {
+        ...prevData,
+        [name]: type === "checkbox" ? checked : value
+      })
+    )
   }
 
   const [listTodo, setListTodo] = useState({
@@ -44,11 +49,11 @@ function App() {
           {
             id: nanoid(),
             todo: todo.todo,
-            done: false
+            done: todo.done,
           }
         ]
       })
-      setTodo({todo: ''})
+      setTodo({todo: '', done: false})
       console.log(listTodo)
     }
   }
@@ -93,7 +98,13 @@ function App() {
                   theme={context.theme}
                   toggleTheme={context.toggleTheme}
                 />
-                <InputTodo todo={todo.todo} handleChange={handleChange} keyPress={addTodo} theme={context.theme} />
+                <InputTodo 
+                  todo={todo.todo} 
+                  done={todo.done}
+                  handleChange={handleChange} 
+                  keyPress={addTodo} 
+                  theme={context.theme}
+                />
                 <ListTodo 
                   listTodo={listTodo.todo}
                   theme={context.theme}

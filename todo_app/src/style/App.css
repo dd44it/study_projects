@@ -72,14 +72,23 @@
   background: url("../assets/icon-moon.svg");
 }
 
-.input-todo {
+.input-wrapper {
   width: 600px;
   height: 65px;
-  outline: none;
-  padding: 3px 15px;
-  border-radius: 6px;
-  font-size: 20px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
   margin-bottom: 20px;
+  background-color: hsl(var(--clr-light-very-gray));
+  border-radius: 6px;
+  padding: 3px 25px 3px 15px;
+  font-size: 20px;
+}
+
+.input-todo {
+  width: 100%;
+  outline: none;
+  font-size: 20px;
   border: none;
 }
 
