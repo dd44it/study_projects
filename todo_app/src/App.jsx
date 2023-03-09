@@ -5,111 +5,81 @@ import InputTodo from "./components/InputTodo";
 import { ThemeContextConsumer } from "./ThemeContext";
 import ListTodo from './components/ListTodo';
 import { nanoid } from "nanoid";
+import initialTodo from "./initialData";
+import FilterTodo from "./components/FIlterTodo";
 
 
 function App() {
-  const [todo, setTodo] = useState({ todo: '' })
+  const [todo, setTodo] = useState({ todo: '' });
 
-  const [sortTodo, setSortTodo] = useState({
-    all: true,
-    active: false,
-    completed: false
-  })
+  const [filterTodo, setfilterTodo] = useState('all');
 
   function handleChange(e){
     const {name, value} = e.target
     setTodo({[name]: value})
   }
 
-  const [listTodo, setListTodo] = useState([
-    {
-      id: nanoid(),
-      done: true,
-      todo: 'Complete online JavaScript course'
-    },
-    {
-      id: nanoid(),
-      done: false,
-      todo: 'Jog around the park 3x'
-    },
-    {
-      id: nanoid(),
-      done: false,
-      todo: '10 minutes meditation'
-    },
-    {
-      id: nanoid(),
-      done: false,
-      todo: 'Read for 1 hour'
-    },
-    {
-      id: nanoid(),
-      done: false,
-      todo: 'Pick up groceries'
-    },
-    {
-      id: nanoid(),
-      done: false,
-      todo: 'Complete Todo App on Frontend Mentor'
-    },
-  ])
+  const [listTodo, setListTodo] = useState({
+    todo: [...initialTodo],
+  });
+
+  function filteredTask(filter){
+    if(filter === 'all'){
+      setfilterTodo(filter)
+    }
+    else if(filter === 'active'){
+      setfilterTodo(filter)
+    }
+    else if(filter === 'completed'){
+      setfilterTodo(filter)
+    }
+  }
 
   function addTodo(e){
     if(!todo.todo) return
     if (e.charCode === 13) {
-      const updateTodoList = [
-        ...listTodo,
-        {
-          id: nanoid(),
-          done: false,
-          todo: todo.todo,
-        }
-      ]
-      setListTodo(updateTodoList)
+      setListTodo({
+        todo: [
+          ...listTodo.todo,
+          {
+            id: nanoid(),
+            todo: todo.todo,
+            done: false
+          }
+        ]
+      })
       setTodo({todo: ''})
+      console.log(listTodo)
     }
   }
 
   function removeTodo(id){
-    setListTodo(prevData => prevData.filter(btn => btn.id !== id ))
+    setListTodo(prevData => (
+      {
+        filter: prevData.filter,
+        todo: prevData.todo.filter(todo => todo.id !== id)
+      }
+    ))
   }
 
   function doneTodo(id){
-    setListTodo(prevData => prevData.map(todo => todo.id === id ? {...todo, done: !todo.done} : todo ))
+    setListTodo(prevData => (
+      {
+        filter: prevData.filter,
+        todo: prevData.todo.map(todo => todo.id === id ? {...todo, done: !todo.done} : todo )
+      }
+    ))
   }
 
   function removeCompletedTask(){
-    setListTodo(prevData => prevData.filter(todo => todo.done === false ))
-  }
-
-  function showActiveTask(){
-    // setListTodo(prevData => prevData)
-    // prev elems who contains active should remove at all
-    // here should be method to turn on className to "active"
-
-    const updateTodoList = [
-      ...listTodo,
+    setListTodo(prevData =>  (
       {
-        active: listTodo.filter(todo => todo.done === false && {...todo})
+        filter: prevData.filter,
+        todo: prevData.todo.filter(todo => todo.done === false )
       }
-    ]
-    setListTodo(updateTodoList)
-    setSortTodo({all: false, active: true, completed: false})
-  }
+    ))
+    console.log('listTodo', listTodo)
 
-  function showCompleted(){
-    const updateTodoList = [
-      ...listTodo,
-      {
-        completed: listTodo.filter(todo => todo.done === true && {...todo})
-      }
-    ]
-    setListTodo(updateTodoList)
-    setSortTodo({all: false, active: false, completed: true})
-  }
-
-  function showAll(){
-    setSortTodo({all: true, active: false, completed: false})
   }
 
   return (
@@ -125,15 +95,18 @@ function App() {
                 />
                 <InputTodo todo={todo.todo} handleChange={handleChange} keyPress={addTodo} theme={context.theme} />
                 <ListTodo 
-                  listTodo={listTodo}
+                  listTodo={listTodo.todo}
                   theme={context.theme}
                   removeTodo={removeTodo}
                   done={doneTodo}
-                  removeCompletedTask={removeCompletedTask}
-                  showActiveTask={showActiveTask}
-                  sortTodo={sortTodo}
-                  showCompleted={showCompleted}
-                  showAll={showAll}
+                  filter={filterTodo}
+                  />
+                  <FilterTodo
+                    theme={context.theme}
+                    listTodo={listTodo.todo}
+                    removeCompletedTask={removeCompletedTask}
+                    filteredTask={filteredTask}
+                    filter={filterTodo}
                   />
 
               </div>
