@@ -3,7 +3,7 @@ import React from "react";
 export default function InputTodo(props) {
 
   return (
-    <div className="input-wrapper">
+    <div className={`input-wrapper input-todo-${props.theme}`}>
       <input 
         type="checkbox" 
         className="todo-checkbox" 
