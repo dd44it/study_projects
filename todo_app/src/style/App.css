@@ -226,6 +226,63 @@
   display: none;
 }
 
+.round {
+  position: relative;
+}
+
+.round .todo-checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 1.5em;
+  height: 1.5em;
+  font: inherit;
+  border: 0.1em solid grey;
+  margin-bottom: -0.125em;
+  border-radius: 50%;
+}
+
+.round input:not(:checked):hover {
+  border-color: transparent;
+  background: linear-gradient(#fff, #fff) padding-box,
+     linear-gradient(
+     90deg,
+     rgba(108, 189, 252, 1) 0%,
+     rgba(157, 123, 243, 1) 100%
+  );
+  cursor: pointer;
+}
+
+.round label:after {
+  content: "";
+  width: 15px;
+  height: 8px;
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  border: 3px solid #fcfff4;
+  border-top: none;
+  border-right: none;
+  background: transparent;
+  opacity: 0;
+  cursor: pointer;
+  transform: rotate(-45deg);
+}
+
+.round input:checked {
+  border: 0;
+  background: linear-gradient(90deg,
+      rgba(108, 189, 252, 1) 0%,
+      rgba(157, 123, 243, 1) 100%);
+  box-shadow: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.round input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+
 @media screen and (max-width: 768px) {
   .header-light {
     background: url("../assets/header/bg-mobile-light.jpg");

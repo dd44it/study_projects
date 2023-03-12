@@ -15,11 +15,15 @@ export default function ListTodo(props) {
           key={item.id}
           className={`list-todo__item list-todo__item-${props.theme}`}
         >
-          <input type="checkbox" 
-            className="todo-checkbox" 
-            onChange={e => {props.done(item.id)} } 
-            checked={item.done && true} 
-          />
+          <div className="round" >
+            <input type="checkbox" 
+              className="todo-checkbox" 
+              onChange={e => {props.done(item.id)} } 
+              checked={item.done && true} 
+            />
+            <label htmlFor=""></label>
+          </div>
+
           <span 
             onClick={e => {props.done(item.id)} }
             className={`todo__item todo-${todoDone}-${props.theme}`}> {item.todo} </span>
