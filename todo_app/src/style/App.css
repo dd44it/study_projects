@@ -66,10 +66,12 @@
 /* .switch-theme */
 .switch-theme-light {
   background: url("../assets/icon-sun.svg");
+  background-repeat: no-repeat;
 }
 
 .switch-theme-night {
   background: url("../assets/icon-moon.svg");
+  background-repeat: no-repeat;
 }
 
 .input-wrapper {
@@ -185,14 +187,15 @@
 }
 
 .filter {
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  gap: 5px;
   font-size: 16px;
   color: hsl(var(--clr-light-black-gray));
 }
 
 .filter-button_wrapper {
   display: flex;
-  width: 70%;
 }
 
 .filter-button {
@@ -219,3 +222,95 @@
   margin-right: 0;
 }
 
+.filter-button_wrapper_mobile {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .header-light {
+    background: url("../assets/header/bg-mobile-light.jpg");
+    background-size: cover;
+  }
+  
+  .header-night {
+    background: url("../assets/header/bg-mobile-dark.jpg");
+    background-size: cover;
+  }
+
+  .switch-theme {
+    height: 20px;
+  }
+
+  .header-todo {
+    margin-bottom: 40px;
+  }
+
+  .title-app {
+    font-size: 2.5rem;
+    line-height: inherit;
+  }
+
+  .header-todo,
+  .input-wrapper,
+  .list-todo,
+  .filter,
+  .filter-button_wrapper_mobile {
+    width: 60%;
+  }
+
+  .input-wrapper,
+  .list-todo__item,
+  .filter,
+  .filter-button_wrapper_mobile {
+    height: 45px;
+  }
+
+  .input-todo,
+  .list-todo__item,
+  .filter-button,
+  .delete {
+    font-size: 0.75rem;
+  }
+
+  .list-todo__item {
+    padding: 3px 15px 3px 15px;
+  }
+
+  .filter {
+    grid-template-columns: 0.5fr 0.5fr;
+    border-bottom: none;
+    border-radius: 0 0 6px 6px; 
+  }
+
+  .filter-button_wrapper {
+    display: none;
+  }
+
+  .todo-checkbox {
+    width: 20px;
+    height: 20px;
+  }
+
+  .filter-button_wrapper_mobile {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 0 auto;
+    margin-top: 15px;
+    border-radius: 6px;
+  }
+
+  .filter-button_wrapper_mobile .filter-button{
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .header-todo,
+  .input-wrapper,
+  .list-todo,
+  .filter,
+  .filter-button_wrapper_mobile {
+    width: 80%;
+  }
+}
