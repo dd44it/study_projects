@@ -4,15 +4,19 @@ export default function InputTodo(props) {
 
   return (
     <div className={`input-wrapper input-todo-${props.theme}`}>
-      <input 
-        type="checkbox" 
-        className="todo-checkbox" 
-        name="done"
-        checked={props.done && true}
-        onChange={(e) => {
-          props.handleChange(e);
-        }}
-      />
+      <div className="round" >
+        <input 
+          type="checkbox" 
+          className="todo-checkbox" 
+          name="done"
+          checked={props.done && true}
+          onChange={(e) => {
+            props.handleChange(e);
+          }}
+        />
+        <label htmlFor=""></label>
+      </div>
+
       <input
         type="text"
         className={`input-todo  input-todo-${props.theme}`}
