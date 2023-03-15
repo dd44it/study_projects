@@ -1,4 +1,5 @@
 import React from "react";
+import Checkbox from './Checkbox';
 
 export default function ListTodo(props) {
   
@@ -15,18 +16,18 @@ export default function ListTodo(props) {
           key={item.id}
           className={`list-todo__item list-todo__item-${props.theme}`}
         >
-          <div className="round" >
-            <input type="checkbox" 
-              className="todo-checkbox" 
-              onChange={e => {props.done(item.id)} } 
-              checked={item.done && true} 
-            />
-            <label htmlFor=""></label>
-          </div>
-
-          <span 
-            onClick={e => {props.done(item.id)} }
-            className={`todo__item todo-${todoDone}-${props.theme}`}> {item.todo} </span>
+          <Checkbox
+            done={item.done && true}
+            handleChange={e => {props.done(item.id)}}
+          />
+          <span
+            className={`todo__item todo-${todoDone}-${props.theme}`}
+            onClick={(e) => {
+              props.done(item.id);
+            }}
+          >
+            {item.todo}
+          </span>
           <span
             className="delete"
             onClick={(e) => {

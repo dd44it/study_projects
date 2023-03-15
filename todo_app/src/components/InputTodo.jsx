@@ -1,21 +1,10 @@
 import React from "react";
+import Checkbox from './Checkbox';
 
 export default function InputTodo(props) {
-
   return (
     <div className={`input-wrapper input-todo-${props.theme}`}>
-      <div className="round" >
-        <input 
-          type="checkbox" 
-          className="todo-checkbox" 
-          name="done"
-          checked={props.done && true}
-          onChange={(e) => {
-            props.handleChange(e);
-          }}
-        />
-        <label htmlFor=""></label>
-      </div>
+      <Checkbox done={props.done} handleChange={props.handleChange} />
 
       <input
         type="text"
