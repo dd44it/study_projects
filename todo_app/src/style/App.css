@@ -135,7 +135,7 @@
 }
 
 .todo__item{
-  margin-right: auto;
+  margin: 0 auto 0 10px;
   cursor: pointer;
 }
 
@@ -294,10 +294,6 @@
   .header-night {
     background: url("../assets/header/bg-mobile-dark.jpg");
     background-size: cover;
-  }
-
-  .switch-theme {
-    height: 20px;
   }
 
   .header-todo {
