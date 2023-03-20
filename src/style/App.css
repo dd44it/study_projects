@@ -58,19 +58,19 @@
 
 .switch-theme {
   background-repeat: no-repeat;
-  height: 25px;
+  height: 30px;
   width: 25px;
   cursor: pointer;
 }
 
 /* .switch-theme */
 .switch-theme-light {
-  background: url("../assets/icon-sun.svg");
+  background: url("../assets/icon-moon.svg");
   background-repeat: no-repeat;
 }
 
 .switch-theme-night {
-  background: url("../assets/icon-moon.svg");
+  background: url("../assets/icon-sun.svg");
   background-repeat: no-repeat;
 }
 
@@ -109,7 +109,6 @@
   width: 600px;
   margin: 0 auto;
   text-align: left;
-  border-radius: 6px 6px 0 0;
   /* box-shadow: 0px 19px 53px -17px hsl(var(--clr-light-grayish-blue));
   -webkit-box-shadow: 0px 19px 53px -17px hsl(var(--clr-light-very-grayish-blue));
   -moz-box-shadow: 0px 19px 53px -17px hsl(var(--clr-light-very-grayish-blue)); */
@@ -185,6 +184,8 @@
   gap: 5px;
   font-size: 16px;
   color: hsl(var(--clr-light-black-gray));
+  border-bottom: 0;
+  border-radius: 0 0 6px 6px;
 }
 
 .filter-button_wrapper {
