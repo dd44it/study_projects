@@ -1,6 +1,9 @@
 import React from "react";
+import { nanoid } from "nanoid";
+
 
 export default function Checkbox(props) {
+  const idCheckbox = nanoid()
   return (
     <div className="round">
       <input
@@ -9,9 +12,9 @@ export default function Checkbox(props) {
         name="done"
         checked={props.done && true}
         onChange={props.handleChange}
-        
+        id={idCheckbox}
       />
-      <label htmlFor=""></label>
+      <label htmlFor={idCheckbox}></label>
     </div>
   );
 }
