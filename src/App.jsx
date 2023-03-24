@@ -1,47 +1,42 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./style/App.css";
 import Header from "./components/Header";
 import InputTodo from "./components/InputTodo";
-import { ThemeContextConsumer } from "./ThemeContext";
-import ListTodo from './components/ListTodo';
+import { ThemeContext } from "./ThemeContext";
+import ListTodo from "./components/ListTodo";
 import { nanoid } from "nanoid";
 import initialTodo from "./initialData";
 import FilterTodo from "./components/FIlterTodo";
 
-
 function App() {
-  const [todo, setTodo] = useState({ todo: '', done: false });
+  const [todo, setTodo] = useState({ todo: "", done: false });
 
-  const [filterTodo, setfilterTodo] = useState('all');
+  const [filterTodo, setfilterTodo] = useState("all");
 
-  function handleChange(e){
-    const {name, value, type, checked} = e.target
-    setTodo(prevData => (
-      {
-        ...prevData,
-        [name]: type === "checkbox" ? checked : value
-      })
-    )
+  function handleChange(e) {
+    const { name, value, type, checked } = e.target;
+    setTodo((prevData) => ({
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   }
 
   const [listTodo, setListTodo] = useState({
     todo: [...initialTodo],
   });
 
-  function filteredTask(filter){
-    if(filter === 'all'){
-      setfilterTodo(filter)
-    }
-    else if(filter === 'active'){
-      setfilterTodo(filter)
-    }
-    else if(filter === 'completed'){
-      setfilterTodo(filter)
+  function filteredTask(filter) {
+    if (filter === "all") {
+      setfilterTodo(filter);
+    } else if (filter === "active") {
+      setfilterTodo(filter);
+    } else if (filter === "completed") {
+      setfilterTodo(filter);
     }
   }
 
-  function addTodo(e){
-    if(!todo.todo) return
+  function addTodo(e) {
+    if (!todo.todo) return;
     if (e.charCode === 13) {
       setListTodo({
         todo: [
@@ -50,82 +45,69 @@ function App() {
             id: nanoid(),
             todo: todo.todo,
             done: todo.done,
-          }
-        ]
-      })
-      setTodo({todo: '', done: false})
-      console.log(listTodo)
+          },
+        ],
+      });
+      setTodo({ todo: "", done: false });
+      console.log(listTodo);
     }
   }
 
-  function removeTodo(id){
-    setListTodo(prevData => (
-      {
-        filter: prevData.filter,
-        todo: prevData.todo.filter(todo => todo.id !== id)
-      }
-    ))
+  function removeTodo(id) {
+    setListTodo((prevData) => ({
+      filter: prevData.filter,
+      todo: prevData.todo.filter((todo) => todo.id !== id),
+    }));
   }
 
-  function doneTodo(id){
-    setListTodo(prevData => (
-      {
-        filter: prevData.filter,
-        todo: prevData.todo.map(todo => todo.id === id ? {...todo, done: !todo.done} : todo )
-      }
-    ))
+  function doneTodo(id) {
+    setListTodo((prevData) => ({
+      filter: prevData.filter,
+      todo: prevData.todo.map((todo) =>
+        todo.id === id ? { ...todo, done: !todo.done } : todo
+      ),
+    }));
   }
 
-  function removeCompletedTask(){
-    setListTodo(prevData =>  (
-      {
-        filter: prevData.filter,
-        todo: prevData.todo.filter(todo => todo.done === false )
-      }
-    ))
-    console.log('listTodo', listTodo)
-
+  function removeCompletedTask() {
+    setListTodo((prevData) => ({
+      filter: prevData.filter,
+      todo: prevData.todo.filter((todo) => todo.done === false),
+    }));
+    console.log("listTodo", listTodo);
   }
+
+  const {theme, toggleTheme} = useContext(ThemeContext)
 
   return (
     <div className="App">
-      <ThemeContextConsumer>
-        {(context) => (
-          <>
-            <header className={`header header-${context.theme}`}>
-              <div className="todo">
-                <Header
-                  theme={context.theme}
-                  toggleTheme={context.toggleTheme}
-                />
-                <InputTodo 
-                  todo={todo.todo} 
-                  done={todo.done}
-                  handleChange={handleChange} 
-                  keyPress={addTodo} 
-                  theme={context.theme}
-                />
-                <ListTodo 
-                  listTodo={listTodo.todo}
-                  theme={context.theme}
-                  removeTodo={removeTodo}
-                  done={doneTodo}
-                  filter={filterTodo}
-                  />
-                  <FilterTodo
-                    theme={context.theme}
-                    listTodo={listTodo.todo}
-                    removeCompletedTask={removeCompletedTask}
-                    filteredTask={filteredTask}
-                    filter={filterTodo}
-                  />
-
-              </div>
-            </header>
-            <main className={`main main-${context.theme}`}></main>
-          </>
-        )}
-      </ThemeContextConsumer>
+      <header className={`header header-${theme}`}>
+        <div className="todo">
+          <Header theme={theme} toggleTheme={toggleTheme} />
+          <InputTodo
+            todo={todo.todo}
+            done={todo.done}
+            handleChange={handleChange}
+            keyPress={addTodo}
+            theme={theme}
+          />
+          <ListTodo
+            listTodo={listTodo.todo}
+            theme={theme}
+            removeTodo={removeTodo}
+            done={doneTodo}
+            filter={filterTodo}
+          />
+          <FilterTodo
+            theme={theme}
+            listTodo={listTodo.todo}
+            removeCompletedTask={removeCompletedTask}
+            filteredTask={filteredTask}
+            filter={filterTodo}
+          />
+        </div>
+      </header>
+      <main className={`main main-${theme}`}></main>
     </div>
   );
 }
