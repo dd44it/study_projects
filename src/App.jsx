@@ -1,83 +1,27 @@
-import { useContext, useState } from "react";
 import "./style/App.css";
 import Header from "./components/Header";
 import InputTodo from "./components/InputTodo";
-import { ThemeContext } from "./ThemeContext";
 import ListTodo from "./components/ListTodo";
-import { nanoid } from "nanoid";
-import initialTodo from "./initialData";
 import FilterTodo from "./components/FIlterTodo";
+import useTodoApp from "./hooks/useTodoApp"
 
 function App() {
-  const [todo, setTodo] = useState({ todo: "", done: false });
 
-  const [filterTodo, setfilterTodo] = useState("all");
+  const {
+    todo,
+    listTodo,
+    handleChange,
+    addTodo,
+    removeTodo,
+    doneTodo,
+    filterTodo,
+    removeCompletedTask,
+    filteredTask,
+    theme,
+    toggleTheme
+   } = useTodoApp();
 
-  function handleChange(e) {
-    const { name, value, type, checked } = e.target;
-    setTodo((prevData) => ({
-      ...prevData,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  }
-
-  const [listTodo, setListTodo] = useState({
-    todo: [...initialTodo],
-  });
-
-  function filteredTask(filter) {
-    if (filter === "all") {
-      setfilterTodo(filter);
-    } else if (filter === "active") {
-      setfilterTodo(filter);
-    } else if (filter === "completed") {
-      setfilterTodo(filter);
-    }
-  }
-
-  function addTodo(e) {
-    if (!todo.todo) return;
-    if (e.charCode === 13) {
-      setListTodo({
-        todo: [
-          ...listTodo.todo,
-          {
-            id: nanoid(),
-            todo: todo.todo,
-            done: todo.done,
-          },
-        ],
-      });
-      setTodo({ todo: "", done: false });
-      console.log(listTodo);
-    }
-  }
-
-  function removeTodo(id) {
-    setListTodo((prevData) => ({
-      filter: prevData.filter,
-      todo: prevData.todo.filter((todo) => todo.id !== id),
-    }));
-  }
-
-  function doneTodo(id) {
-    setListTodo((prevData) => ({
-      filter: prevData.filter,
-      todo: prevData.todo.map((todo) =>
-        todo.id === id ? { ...todo, done: !todo.done } : todo
-      ),
-    }));
-  }
-
-  function removeCompletedTask() {
-    setListTodo((prevData) => ({
-      filter: prevData.filter,
-      todo: prevData.todo.filter((todo) => todo.done === false),
-    }));
-    console.log("listTodo", listTodo);
-  }
-
-  const {theme, toggleTheme} = useContext(ThemeContext)
+  // const {theme, toggleTheme} = useContext(ThemeContext)
 
   return (
     <div className="App">
